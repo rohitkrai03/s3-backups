@@ -53,6 +53,15 @@ Add the following to the file ``/etc/cron.d/mysql_to_s3`` and then change the co
 
     0 */1 * * * root mysql_to_s3.py --AWS_ACCESS_KEY_ID='xxxxxxxxxxxxxxxxxxxx' --AWS_SECRET_ACCESS_KEY='xxxxxxxxxxxxxxxxxxxx' --S3_BUCKET_NAME='my-backup-bucket' --S3_KEY_NAME='mysql/my-awesome-server' --backup --archive
 
+Directory
+'''''
+
+Add the following to the file ``/etc/cron.d/dir_to_s3`` and then change the command arguments so the command is using your correct AWS credentials, backup bucket and the correct base S3 Key/base folder.
+
+::
+
+    0 */1 * * * root /usr/local/bin/dir_to_s3.py --AWS_ACCESS_KEY_ID='xxxxxxxxxxxxxxxxxxxx' --AWS_SECRET_ACCESS_KEY='xxxxxxxxxxxxxxxxxxxx' --S3_BUCKET_NAME='my-backup-bucket' --S3_KEY_NAME='mydir/my-awesome-server' --DIR_PATH='Path of the directory.' --backup --archive
+
 
 
 Manually Running Backups and Archiving
@@ -120,6 +129,28 @@ To archive MySQL, run the following::
     --AWS_SECRET_ACCESS_KEY='xxxxxxxxxxxxxxxxxxxx' \
     --S3_BUCKET_NAME='my-backup-bucket' \
     --S3_KEY_NAME='redis/my-awesome-server' --archive
+
+
+To backup Directory, run the following::
+
+    $ dir_to_s3.py \
+    --AWS_ACCESS_KEY_ID='xxxxxxxxxxxxxxxxxxxx' \
+    --AWS_SECRET_ACCESS_KEY='xxxxxxxxxxxxxxxxxxxx' \
+    --S3_BUCKET_NAME='my-backup-bucket' \
+    --S3_KEY_NAME='redis/my-awesome-server' \
+    --DIR_PATH='xxxx/xxx/xxxx' \
+    --backup
+
+To archive Directory, run the following::
+
+    $ dir_to_s3.py \
+    --AWS_ACCESS_KEY_ID='xxxxxxxxxxxxxxxxxxxx' \
+    --AWS_SECRET_ACCESS_KEY='xxxxxxxxxxxxxxxxxxxx' \
+    --S3_BUCKET_NAME='my-backup-bucket' \
+    --S3_KEY_NAME='redis/my-awesome-server' \
+    --DIR_PATH='xxxx/xxx/xxxx' \
+    --archive
+
 
 Contribute
 ----------
