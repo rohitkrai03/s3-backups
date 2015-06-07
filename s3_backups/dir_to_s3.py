@@ -9,7 +9,6 @@ from dateutil import tz
 
 import importlib
 import tarfile
-import subprocess
 import tempfile
 import argparse
 import logging
@@ -58,7 +57,6 @@ def backup():
         except S3ResponseError:
             sys.stderr.write("There is no bucket with the name \"" + S3_BUCKET_NAME + "\" in your Amazon S3 account\n")
             sys.stderr.write("Error: Please enter an appropriate bucket name and re-run the script\n")
-            t2.close()
             return
 
         # upload file to Amazon S3
